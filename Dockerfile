@@ -1,14 +1,14 @@
-ARG node=8.2.1
-FROM node:${node}
+ARG NODE_VERSION=8.2.1
+FROM node:${NODE_VERSION}
 
-ARG node
-ARG angular=1.2.3
-ARG gid=988
-ARG uid=406
+ARG NODE_VERSION
+ARG ANGULAR_CLI_VERSION=1.2.3
+ARG GID=988
+ARG UID=406
 
 LABEL maintainer="Mikael Dunhem <mikael.dunhem@gmail.com>"
-LABEL node_version="${node}"
-LABEL angular_cli_version="${angular}"
+LABEL node_version=${NODE_VERSION}
+LABEL angular_cli_version=${ANGULAR_CLI_VERSION}
 LABEL chrome_version="stable"
 
 USER root
@@ -29,8 +29,8 @@ RUN chmod 755 /usr/bin/google-chrome
 ENV CHROME_BIN /usr/bin/google-chrome
 
 #### Hack to get by Jenkins not properly starting the docker image ###
-RUN groupadd -g ${gid} jenkins
-RUN useradd -u ${uid} -g ${gid} -G root -m jenkins
+RUN groupadd -g ${GID} jenkins
+RUN useradd -u ${UID} -g ${GID} -G root -m jenkins
 
 USER jenkins
 
@@ -40,4 +40,4 @@ ENV PATH=/home/jenkins/.npm-global/bin:$PATH
 ######################################################################
 
 # Install angular cli globally
-RUN npm install -g @angular/cli@${angular}
+RUN npm install -g @angular/cli@${ANGULAR_CLI_VERSION}
