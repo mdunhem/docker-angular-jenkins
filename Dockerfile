@@ -6,8 +6,8 @@ ARG gid=988
 ARG uid=406
 
 LABEL maintainer="Mikael Dunhem <mikael.dunhem@gmail.com>"
-LABEL node_version=$node
-LABEL angular_cli_version=$angular
+LABEL node_version="8.2.1"
+LABEL angular_cli_version="1.2.3"
 LABEL chrome_version="stable"
 
 USER root
@@ -28,8 +28,8 @@ RUN chmod 755 /usr/bin/google-chrome
 ENV CHROME_BIN /usr/bin/google-chrome
 
 #### Hack to get by Jenkins not properly starting the docker image ###
-RUN groupadd -g $gid jenkins
-RUN useradd -u $uid -g $gid -G root -m jenkins
+RUN groupadd -g 988 jenkins
+RUN useradd -u 406 -g 988 -G root -m jenkins
 
 USER jenkins
 
@@ -39,4 +39,4 @@ ENV PATH=/home/jenkins/.npm-global/bin:$PATH
 ######################################################################
 
 # Install angular cli globally
-RUN npm install -g @angular/cli@$angular
+RUN npm install -g @angular/cli@1.2.3
