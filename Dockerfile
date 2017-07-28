@@ -1,9 +1,10 @@
 ARG node=8.2.1
+FROM node:${node}
+
 ARG angular=1.2.3
 ARG gid=988
 ARG uid=406
 
-FROM node:$node
 LABEL maintainer="Mikael Dunhem <mikael.dunhem@gmail.com>"
 LABEL node_version=$node
 LABEL angular_cli_version=$angular
