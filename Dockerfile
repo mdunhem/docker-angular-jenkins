@@ -18,6 +18,9 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
     apt-get install -y Xvfb google-chrome-stable && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Install rsync
+RUN apt-get update && apt-get install -y rsync
+
 # Start xvfb and chrome (in no-sandbox mode)
 ADD xvfb-chrome.sh /usr/bin/xvfb-chrome
 RUN ln -sf /usr/bin/xvfb-chrome /usr/bin/google-chrome
